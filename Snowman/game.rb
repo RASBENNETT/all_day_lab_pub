@@ -35,14 +35,12 @@ class Game
     end
 
     def draw(lives)
-        puts "Already Guessed
-        #{@guessed_letters}" +
+        puts "Already Guessed :: #{@guessed_letters}
+        " +
         
         @drawing.determine_drawing(lives) + "
 
-        " + @hidden_word.secret + "
-
-        #{'_' * 40}"
+        " + @hidden_word.secret
     end
 
 

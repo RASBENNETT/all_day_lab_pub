@@ -77,14 +77,10 @@ class DebugDrawing
         |       |
         |       O
         |      /|/
-        |      / /
+        |      //
         |       
-        ___
-        
-        GAME OVER"
+        ___"
     
-        else
-        return "YOU WIN! CONGRATS"
 
         end
     end
