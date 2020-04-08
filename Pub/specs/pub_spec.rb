@@ -17,6 +17,7 @@ class PubTest < MiniTest::Test
         @customer1 = Customer.new("Gary King", 10, 34)
         @customer2 = Customer.new("Andy Knight", 1000, 17)
         @customer3 = Customer.new("Steven Prince", 100, 34)
+        @customer4 = Customer.new("Steven Prince", 100, 18)
         @food1 = Food.new("Nachos", 10, -5)
     end
 
@@ -40,6 +41,7 @@ class PubTest < MiniTest::Test
     def test_check_id()
         assert(@pub.check_id(@customer1))
         refute(@pub.check_id(@customer2))
+        assert(@pub.check_id(@customer4))
     end
 
 
@@ -55,6 +57,8 @@ class PubTest < MiniTest::Test
         assert_equal(1000, @customer2.wallet)
         assert_equal(200, @pub.till)
     end
+
+  
 
     def test_sell_drink_drunkenness_level()
         @pub.sell_drink(@customer3, @drink1)
