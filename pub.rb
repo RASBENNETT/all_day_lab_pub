@@ -13,8 +13,17 @@ class Pub
     end
 
     def sell_drink(customer, drink)
-        customer.remove_from_wallet(drink.price)
-        increase_till(drink.price)
+        if(check_id(customer))
+            customer.remove_from_wallet(drink.price)
+            increase_till(drink.price)
+        else
+            return "Not of age"
+        end
+    end
+
+    def check_id(customer)
+        return true if customer.age >= 18
+        return false
     end
 
 end
