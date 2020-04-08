@@ -13,12 +13,20 @@ class Pub
     end
 
     def sell_drink(customer, drink)
-        if(check_id(customer))
-            customer.remove_from_wallet(drink.price)
-            increase_till(drink.price)
-        else
-            return "Not of age"
-        end
+        return "Not of age" if !(check_id(customer))
+        return "Too drunk" if (customer.drunkenness > 10)
+        customer.remove_from_wallet(drink.price)
+        increase_till(drink.price)
+        customer.increase_drunkenness(drink.alcohol_level)
+        # if(check_id(customer)) && customer.drunkenness < 10
+            # customer.remove_from_wallet(drink.price)
+            # increase_till(drink.price)
+            # customer.increase_drunkenness(drink.alcohol_level)
+        # elsif !(check_id(customer))
+        #     return "Not of age" 
+        # elsif customer.drunkenness < 10
+        #     return "Too Drunk"  
+        # end
     end
 
     def check_id(customer)

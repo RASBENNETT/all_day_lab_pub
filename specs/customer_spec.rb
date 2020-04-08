@@ -29,4 +29,13 @@ class CustomerTest < MiniTest::Test
         assert_equal(5, @customer1.remove_from_wallet(5))
     end
 
+    def test_get_drunkenness_starts_at_zero()
+        assert_equal(0, @customer1.drunkenness)
+    end
+
+    def test_increase_drunkenness()
+        @customer1.increase_drunkenness(2)
+        assert_equal(2, @customer1.drunkenness)
+    end
+
 end
