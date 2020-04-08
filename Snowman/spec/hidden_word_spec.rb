@@ -16,6 +16,7 @@ class HiddenWordTest < Minitest::Test
 
     def test_reveal_letter()
         @hidden_word.reveal_letter('a')
+        assert_equal("*a*a*a", @hidden_word.secret)
     end
 
 end
