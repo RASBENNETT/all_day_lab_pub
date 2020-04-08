@@ -7,11 +7,11 @@ require_relative("../drink.rb")
 require_relative("../customer.rb")
 require_relative("../food.rb")
 
-class PetShopTest < MiniTest::Test
+class PubTest < MiniTest::Test
 
     def setup()
-        @drink1 = Drink.new("beer", 5, 2)
-        @drink2 = Drink.new("cider", 4, 3)
+        @drink1 = Drink.new("beer", 5, 2, 100)
+        @drink2 = Drink.new("cider", 4, 3, 100)
         @drinks = [@drink1, @drink2]
         @pub = Pub.new("The First Post", 200, @drinks)
         @customer1 = Customer.new("Gary King", 10, 34)
@@ -47,6 +47,7 @@ class PetShopTest < MiniTest::Test
         @pub.sell_drink(@customer1, @drink1)
         assert_equal(5, @customer1.wallet)
         assert_equal(205, @pub.till)
+        assert_equal(199, @pub.total_stock)
     end
      
     def test_sell_drink_under_18()
@@ -63,6 +64,8 @@ class PetShopTest < MiniTest::Test
         @pub.sell_drink(@customer3, @drink2)
         @pub.sell_drink(@customer3, @drink1)
         assert_equal(77, @customer3.wallet)
+        assert_equal(195, @pub.total_stock)
+        assert_equal(97, @drink1.stock)
     end
 
     def test_sell_food()
@@ -72,4 +75,16 @@ class PetShopTest < MiniTest::Test
         assert_equal(-5, @customer3.drunkenness)
     end
 
+    def test_get_total_stock()
+        assert_equal(200, @pub.total_stock)
+    end
+
+    def test_stock_value_by_drink()
+        assert_equal(400, @pub.stock_value_by_drink(@drink2))
+    end
+
+    def test_stock_value()
+        assert_equal(900, @pub.stock_value)
+    end
+    
 end

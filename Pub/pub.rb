@@ -12,21 +12,14 @@ class Pub
         @till += price
     end
 
+
     def sell_drink(customer, drink)
         return "Not of age" if !(check_id(customer))
         return "Too drunk" if (customer.drunkenness > 10)
         customer.remove_from_wallet(drink.price)
         increase_till(drink.price)
         customer.modify_drunkenness(drink.alcohol_level)
-        # if(check_id(customer)) && customer.drunkenness < 10
-            # customer.remove_from_wallet(drink.price)
-            # increase_till(drink.price)
-            # customer.increase_drunkenness(drink.alcohol_level)
-        # elsif !(check_id(customer))
-        #     return "Not of age" 
-        # elsif customer.drunkenness < 10
-        #     return "Too Drunk"  
-        # end
+        drink.stock -= 1
     end
 
     def sell_food(customer, food)
@@ -39,5 +32,27 @@ class Pub
         return true if customer.age >= 18
         return false
     end
+
+    def total_stock()
+        total_stock = 0
+        for drink in @drinks
+            total_stock += drink.stock
+        end
+        return total_stock
+    end
+
+    def stock_value_by_drink(drink)
+        return drink.stock * drink.price
+    end
+
+    def stock_value()
+        total_stock_value = 0 
+        for drink in @drinks
+            total_stock_value += stock_value_by_drink(drink)
+        end
+        return total_stock_value
+    end
+
+    
 
 end
