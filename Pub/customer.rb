@@ -19,6 +19,4 @@ class Customer
         @drunkenness += alcohol_modifier
     end
 
-
-
 end

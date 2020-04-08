@@ -72,11 +72,24 @@ class PubTest < MiniTest::Test
         assert_equal(97, @drink1.stock)
     end
 
+    def test_sell_drink_not_enough_money()
+        @pub.sell_drink(@customer1, @drink1)
+        @pub.sell_drink(@customer1, @drink1)
+        @pub.sell_drink(@customer1, @drink1)
+        assert_equal("Not enough money",@pub.sell_drink(@customer1, @drink1))
+        
+    end
+
     def test_sell_food()
         @pub.sell_food(@customer3, @food1)
         assert_equal(90, @customer3.wallet)
         assert_equal(210, @pub.till)
         assert_equal(-5, @customer3.drunkenness)
+    end
+
+    def test_sell_food_not_enough_money()
+        @pub.sell_food(@customer1, @food1)
+        assert_equal("Not enough money",@pub.sell_food(@customer1, @food1))
     end
 
     def test_get_total_stock()
